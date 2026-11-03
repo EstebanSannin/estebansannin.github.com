@@ -3,6 +3,7 @@ import type { Post } from '../utils/posts';
 import { readingTime } from '../utils/posts';
 import Base from './Base.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import MermaidLoader from '../components/MermaidLoader.astro';
 
 interface Props {
   post: Post;
@@ -47,6 +48,7 @@ const { title, description, pubDate, updatedDate, tags } = post.data;
       <slot />
     </div>
   </article>
+  <MermaidLoader />
   <nav class="back mono"><a href="/blog/">← all writing</a></nav>
 </Base>
 

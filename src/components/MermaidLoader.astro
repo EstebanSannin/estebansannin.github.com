@@ -1,0 +1,71 @@
+---
+// Renders <pre class="mermaid"> blocks. Mermaid is loaded only on pages that have one,
+// and diagrams are re-rendered when the theme changes.
+---
+
+<script>
+  const css = (name: string) =>
+    getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+  async function render() {
+    const nodes = [...document.querySelectorAll<HTMLElement>('pre.mermaid')];
+    if (!nodes.length) return;
+
+    for (const node of nodes) {
+      node.dataset.src ??= node.textContent ?? '';
+      node.textContent = node.dataset.src;
+      node.removeAttribute('data-processed');
+    }
+
+    const { default: mermaid } = await import('mermaid');
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'base',
+      fontFamily: css('--font-mono'),
+      themeVariables: {
+        darkMode: document.documentElement.dataset.theme === 'dark',
+        background: css('--bg'),
+        primaryColor: css('--bg-soft'),
+        primaryTextColor: css('--fg'),
+        primaryBorderColor: css('--fg-faint'),
+        secondaryColor: css('--accent-soft'),
+        tertiaryColor: css('--bg'),
+        lineColor: css('--fg-muted'),
+        textColor: css('--fg'),
+        noteBkgColor: css('--accent-soft'),
+        noteTextColor: css('--fg'),
+        noteBorderColor: css('--accent'),
+        actorBkg: css('--bg-soft'),
+        actorBorder: css('--fg-faint'),
+        signalColor: css('--fg-muted'),
+        fontSize: '14px',
+      },
+    });
+    await mermaid.run({ nodes });
+  }
+
+  render();
+  new MutationObserver(render).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
+</script>
+
+<style is:global>
+  pre.mermaid {
+    display: flex;
+    justify-content: center;
+    margin-block: 2em;
+    margin-inline: calc(50% - min(32rem, 50vw - var(--gutter)));
+    padding: 1.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg);
+    overflow-x: auto;
+    font-size: 0; /* hide source text until rendered */
+  }
+  pre.mermaid[data-processed] svg {
+    max-width: 100%;
+    height: auto;
+  }
+</style>

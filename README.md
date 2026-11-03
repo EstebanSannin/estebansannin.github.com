@@ -22,7 +22,29 @@ draft: true   # visible only in `npm run dev`
 ---
 ```
 
-`src/content/blog/kitchen-sink.mdx` shows every supported formatting feature.
+`src/content/blog/kitchen-sink.mdx` shows every text formatting feature, and
+`src/content/blog/board-bring-up-notes.mdx` shows every media type. Both are drafts.
+
+## Media
+
+In `.mdx` posts, import components from `src/components/mdx/`:
+
+| Component   | Use for                                                                  |
+| ----------- | ------------------------------------------------------------------------ |
+| `<Figure>`  | Optimized images with caption, `wide` layout and click-to-zoom           |
+| `<Diagram>` | Inline SVGs (`import D from './d.svg'`) that follow the light/dark theme |
+| `<Video>`   | MP4/WebM with controls, or `gif` for an autoplaying muted loop           |
+| `<YouTube>` | Click-to-load embed via youtube-nocookie                                 |
+| `<Callout>` | `note`, `tip` and `warning` boxes                                        |
+
+Mermaid diagrams are plain ` ```mermaid ` code blocks, in `.md` or `.mdx`.
+
+Images go in `src/assets/` (optimized at build time). Videos and GIFs go in `public/`.
+To turn a screen recording into a small looping clip:
+
+```sh
+ffmpeg -i in.mov -vf "fps=30,scale=960:-2" -an -c:v libx264 -crf 26 -movflags +faststart out.mp4
+```
 
 ## Layout
 

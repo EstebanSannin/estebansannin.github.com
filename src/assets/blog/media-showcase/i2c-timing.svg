@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 260" role="img" aria-label="I2C timing: start condition, 7-bit address 0x50, write bit, ACK, stop condition">
+  <style>
+    .td-sig { fill: none; stroke: var(--fg, #18181b); stroke-width: 2.5; stroke-linejoin: round; }
+    .td-guide { stroke: var(--border, #e4e4e0); stroke-dasharray: 3 5; }
+    .td-name { font: 600 15px var(--font-mono, monospace); fill: var(--fg-muted, #5f5f66); }
+    .td-bit { font: 12px var(--font-mono, monospace); fill: var(--fg-faint, #8f8f96); text-anchor: middle; }
+    .td-mark { font: 600 12px var(--font-mono, monospace); fill: var(--accent, #e2570b); text-anchor: middle; letter-spacing: .06em; }
+    .td-hl { fill: var(--accent, #e2570b); opacity: .12; }
+  </style>
+  <g transform="translate(30 0)">
+  <line class="td-guide" x1="220" y1="30" x2="220" y2="210"/><line class="td-guide" x1="300" y1="30" x2="300" y2="210"/><line class="td-guide" x1="380" y1="30" x2="380" y2="210"/><line class="td-guide" x1="460" y1="30" x2="460" y2="210"/><line class="td-guide" x1="540" y1="30" x2="540" y2="210"/><line class="td-guide" x1="620" y1="30" x2="620" y2="210"/><line class="td-guide" x1="700" y1="30" x2="700" y2="210"/><line class="td-guide" x1="780" y1="30" x2="780" y2="210"/><line class="td-guide" x1="860" y1="30" x2="860" y2="210"/>
+  <rect class="td-hl" x="120" y="30" width="60" height="180" rx="4"/>
+  <rect class="td-hl" x="820" y="30" width="80" height="180" rx="4"/>
+  <rect class="td-hl" x="900" y="30" width="80" height="180" rx="4"/>
+  </g>
+  <text class="td-name" x="0" y="75">SCL</text>
+  <text class="td-name" x="0" y="175">SDA</text>
+  <path class="td-sig" d="M40 50 H160 V90 H200 V50 H240 V90 H280 V50 H320 V90 H360 V50 H400 V90 H440 V50 H480 V90 H520 V50 H560 V90 H600 V50 H640 V90 H680 V50 H720 V90 H760 V50 H800 V90 H840 V50 H880 V90 H920 V50 H1060" transform="translate(30 0)"/>
+  <path class="td-sig" d="M40 150 H140 V190 H180 V150 H260 V190 H340 V150 H420 V190 H500 V190 H580 V190 H660 V190 H740 V190 H820 V190 H900 V190 H960 V150 H1060" transform="translate(30 0)"/>
+  <g transform="translate(30 0)"><text class="td-bit" x="220" y="136">A6</text><text class="td-bit" x="300" y="136">A5</text><text class="td-bit" x="380" y="136">A4</text><text class="td-bit" x="460" y="136">A3</text><text class="td-bit" x="540" y="136">A2</text><text class="td-bit" x="620" y="136">A1</text><text class="td-bit" x="700" y="136">A0</text><text class="td-bit" x="780" y="136">R/W</text><text class="td-bit" x="860" y="136">ACK</text></g>
+  <text transform="translate(30 0)" class="td-mark" x="150" y="240">START</text>
+  <text transform="translate(30 0)" class="td-mark" x="860" y="240">ACK</text>
+  <text transform="translate(30 0)" class="td-mark" x="940" y="240">STOP</text>
+</svg>

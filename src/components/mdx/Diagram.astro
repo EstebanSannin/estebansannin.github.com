@@ -1,0 +1,14 @@
+---
+// Wrapper for inline SVG components (import Foo from './foo.svg'), so diagrams
+// can use the site's CSS variables and follow the light/dark theme.
+interface Props {
+  caption?: string;
+  wide?: boolean;
+}
+const { caption, wide = false } = Astro.props;
+---
+
+<figure class:list={['media', 'diagram', { wide }]}>
+  <slot />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

@@ -1,0 +1,47 @@
+---
+interface Props {
+  /** Path under public/, e.g. /blog/post/clip.mp4 */
+  src: string;
+  webm?: string;
+  poster?: string;
+  caption?: string;
+  /** Autoplay, muted, looping and no controls: a lightweight GIF replacement. */
+  gif?: boolean;
+  wide?: boolean;
+  label?: string;
+}
+const { src, webm, poster, caption, gif = false, wide = false, label } = Astro.props;
+---
+
+<figure class:list={['media', 'video', { wide }]}>
+  <video
+    controls={!gif}
+    data-gif={gif ? '' : undefined}
+    muted={gif}
+    loop={gif}
+    playsinline
+    preload={gif ? 'none' : 'metadata'}
+    poster={poster}
+    aria-label={label ?? caption}
+  >
+    {webm && <source src={webm} type="video/webm" />}
+    <source src={src} type="video/mp4" />
+  </video>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<script>
+  // GIF-style videos play only while visible, and never when reduced motion is requested.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const observer = new IntersectionObserver((entries) => {
+    for (const { target, isIntersecting } of entries) {
+      const video = target as HTMLVideoElement;
+      if (isIntersecting && !reduce.matches) video.play().catch(() => {});
+      else video.pause();
+    }
+  });
+  document.querySelectorAll<HTMLVideoElement>('video[data-gif]').forEach((video) => {
+    video.addEventListener('click', () => (video.paused ? video.play() : video.pause()));
+    observer.observe(video);
+  });
+</script>

@@ -3,9 +3,13 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import expressiveCode from 'astro-expressive-code';
+import remarkMermaid from './src/plugins/remark-mermaid.mjs';
 
 export default defineConfig({
   site: 'https://estebansannin.github.io',
+  markdown: {
+    remarkPlugins: [remarkMermaid],
+  },
   integrations: [
     expressiveCode({
       themes: ['github-dark-default', 'github-light-default'],

@@ -1,0 +1,98 @@
+---
+// Privacy-friendly embed: shows a thumbnail and loads the youtube-nocookie player only on click.
+interface Props {
+  id: string;
+  title: string;
+  start?: number;
+  caption?: string;
+}
+const { id, title, start, caption } = Astro.props;
+const params = new URLSearchParams({ autoplay: '1', rel: '0' });
+if (start) params.set('start', String(start));
+---
+
+<figure class="media">
+  <lite-youtube
+    data-src={`https://www.youtube-nocookie.com/embed/${id}?${params}`}
+    data-title={title}
+    style={`background-image: url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)`}
+  >
+    <button type="button" aria-label={`Play video: ${title}`}>
+      <svg viewBox="0 0 68 48" width="68" height="48" aria-hidden="true">
+        <rect width="68" height="48" rx="12" fill="currentColor"></rect>
+        <path d="M27 15v18l16-9z" fill="#fff"></path>
+      </svg>
+    </button>
+    <span class="title">{title}</span>
+  </lite-youtube>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<script>
+  class LiteYouTube extends HTMLElement {
+    connectedCallback() {
+      this.querySelector('button')?.addEventListener('click', () => {
+        const iframe = document.createElement('iframe');
+        iframe.src = this.dataset.src!;
+        iframe.title = this.dataset.title!;
+        iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        this.replaceChildren(iframe);
+        this.style.backgroundImage = 'none';
+      });
+    }
+  }
+  customElements.define('lite-youtube', LiteYouTube);
+</script>
+
+<style>
+  lite-youtube {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 16 / 9;
+    background: #000 center / cover no-repeat;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  lite-youtube::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgb(0 0 0 / 0.55), transparent 35%);
+  }
+  .title {
+    position: absolute;
+    top: 0.9rem;
+    left: 1rem;
+    right: 1rem;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  button {
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: rgb(20 20 20 / 0.85);
+    cursor: pointer;
+    transition: color 0.15s, transform 0.15s;
+  }
+  button:hover,
+  button:focus-visible {
+    color: var(--accent);
+    transform: scale(1.06);
+  }
+  lite-youtube :global(iframe) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>

@@ -241,3 +241,53 @@ h4 {
   font-size: clamp(1.9rem, 5vw, 2.4rem);
   margin: 3rem 0 2.5rem;
 }
+
+/* ---------- media: figures, diagrams, video ---------- */
+.prose .media {
+  margin: 2.25em 0;
+}
+.media.wide {
+  margin-inline: calc(50% - min(32rem, 50vw - var(--gutter)));
+}
+.media img,
+.media video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+}
+.prose .media img {
+  border-radius: var(--radius);
+}
+.media .zoom {
+  display: block;
+  cursor: zoom-in;
+}
+.media video[data-gif] {
+  cursor: pointer;
+}
+.media.diagram {
+  padding: 1.25rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+.media.diagram svg {
+  display: block;
+  width: 100%;
+  min-width: 36rem;
+  height: auto;
+}
+.media figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--fg-faint);
+  text-align: center;
+  text-wrap: balance;
+}
+.media figcaption::before {
+  content: '↑ ';
+  color: var(--accent);
+}
