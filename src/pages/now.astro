@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const updated = new Date('2026-11-03');
+---
+
+<Base title="Now" description="What I'm focused on at the moment.">
+  <h1 class="page-title">Now</h1>
+  <p class="mono muted">updated <FormattedDate date={updated} /></p>
+  <div class="prose">
+    <ul>
+      <li>Relaunching this blog with Astro, after roughly fifteen years of silence.</li>
+      <li>Working on embedded Linux platforms and the teams behind them.</li>
+      <li>Reading: (add your current book here)</li>
+    </ul>
+    <p class="muted">
+      This is a <a href="https://nownownow.com/about">/now page</a>.
+    </p>
+  </div>
+</Base>

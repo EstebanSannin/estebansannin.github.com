@@ -1,0 +1,73 @@
+---
+import type { Post } from '../utils/posts';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+  posts: Post[];
+}
+const { posts } = Astro.props;
+---
+
+<ul>
+  {
+    posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.id}/`}>
+          <span class="date mono">
+            <FormattedDate date={post.data.pubDate} format="short" />
+          </span>
+          <span class="title">
+            {post.data.title}
+            {post.data.draft && <span class="draft mono">draft</span>}
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 1rem;
+    align-items: baseline;
+    padding-block: 0.7rem;
+    border-bottom: 1px dashed var(--border);
+    text-decoration: none;
+  }
+  li:last-child a {
+    border-bottom: 0;
+  }
+  .date {
+    color: var(--fg-faint);
+  }
+  .title {
+    font-weight: 500;
+  }
+  a:hover .title {
+    color: var(--accent);
+  }
+  a:hover .date {
+    color: var(--fg-muted);
+  }
+  .draft {
+    margin-left: 0.5rem;
+    padding: 0.05rem 0.4rem;
+    border-radius: 4px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.7rem;
+  }
+  @media (max-width: 30rem) {
+    a {
+      grid-template-columns: 1fr;
+      gap: 0.1rem;
+    }
+  }
+</style>

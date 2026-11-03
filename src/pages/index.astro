@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { getPosts, getTags } from '../utils/posts';
+
+const posts = await getPosts();
+const tags = [...getTags(posts).keys()].slice(0, 8);
+---
+
+<Base>
+  <section class="intro">
+    <p class="eyebrow">hello, world</p>
+    <h1>
+      I build embedded systems and the teams that ship them.
+    </h1>
+    <p class="muted">
+      Engineering lead working where hardware meets software: Linux on embedded devices,
+      bootloaders, kernels, build systems, and the people and processes around them. This is
+      where I write down what I learn.
+    </p>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">recent writing</p>
+      <a class="mono all" href="/blog/">all posts →</a>
+    </div>
+    <PostList posts={posts.slice(0, 6)} />
+  </section>
+
+  {
+    tags.length > 0 && (
+      <section>
+        <p class="eyebrow">topics</p>
+        <p class="tags">
+          {tags.map((tag) => (
+            <a class="tag" href={`/tags/${tag}/`}>
+              {tag}
+            </a>
+          ))}
+        </p>
+      </section>
+    )
+  }
+</Base>
+
+<style>
+  section + section {
+    margin-top: 4rem;
+  }
+  .intro {
+    margin-block: 4rem 5rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.9rem);
+    letter-spacing: -0.035em;
+    margin: 0 0 1.25rem;
+  }
+  .intro p:last-child {
+    font-size: 1.15rem;
+    max-width: 36rem;
+    margin: 0;
+  }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .all {
+    color: var(--fg-muted);
+    text-decoration: none;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.1rem;
+    margin: 0;
+  }
+</style>

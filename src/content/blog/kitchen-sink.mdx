@@ -1,0 +1,71 @@
+---
+title: Kitchen sink
+description: Every formatting feature this blog supports, in one place. A draft, visible only in dev.
+pubDate: 2026-11-02
+tags: [meta, embedded-linux, c]
+draft: true
+---
+
+This post shows everything you can use when writing. Because it's marked `draft: true`, it
+appears only when running `npm run dev`.
+
+## Text
+
+Regular paragraphs with **bold**, _italic_, `inline code` and [links](https://astro.build).
+
+> Blockquotes look like this. Good for quoting datasheets, RFCs, or your manager.
+
+## Code
+
+Expressive Code adds titles, line highlighting and diffs:
+
+```c title="gpio_read.c" {12-13}
+#include <gpiod.h>
+#include <stdio.h>
+
+int main(void)
+{
+	unsigned int offset = 17;
+	struct gpiod_chip *chip = gpiod_chip_open("/dev/gpiochip0");
+	struct gpiod_line_settings *settings = gpiod_line_settings_new();
+	struct gpiod_line_config *line_cfg = gpiod_line_config_new();
+
+	gpiod_line_settings_set_direction(settings, GPIOD_LINE_DIRECTION_INPUT);
+	gpiod_line_config_add_line_settings(line_cfg, &offset, 1, settings);
+	struct gpiod_line_request *req = gpiod_chip_request_lines(chip, NULL, line_cfg);
+
+	printf("GPIO %u = %d\n", offset, gpiod_line_request_get_value(req, offset));
+	return 0;
+}
+```
+
+```c title="overlay.dts" del={4} ins={5}
+&i2c1 {
+	status = "okay";
+	clock-frequency = <100000>;
+	clock-frequency = <400000>;
+};
+```
+
+```sh frame="terminal"
+$ gpioget -c gpiochip0 17
+"17"=active
+```
+
+## Tables
+
+| Interface | Max speed | Wires |
+| --------- | --------- | ----- |
+| I²C       | 3.4 MHz   | 2     |
+| SPI       | ~50 MHz   | 4     |
+| UART      | ~5 Mbaud  | 2     |
+
+## Lists
+
+1. Read the datasheet.
+2. Read the errata.
+3. Read the errata again.
+
+---
+
+That's it.

@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="404">
+  <section>
+    <p class="eyebrow">error</p>
+    <h1 class="page-title mono">404: page not found</h1>
+    <p class="mono muted">$ ls {Astro.url.pathname}<br />ls: cannot access: No such file or directory</p>
+    <p><a href="/">← back home</a></p>
+  </section>
+</Base>

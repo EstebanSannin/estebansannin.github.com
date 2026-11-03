@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts } from '../../utils/posts';
+
+const posts = await getPosts();
+const byYear = Map.groupBy(posts, (p) => p.data.pubDate.getFullYear());
+---
+
+<Base title="Writing" description="Everything I've written, newest first.">
+  <h1 class="page-title">Writing</h1>
+  {
+    [...byYear].map(([year, yearPosts]) => (
+      <section>
+        <h2 class="eyebrow">{year}</h2>
+        <PostList posts={yearPosts} />
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  section + section {
+    margin-top: 3rem;
+  }
+</style>

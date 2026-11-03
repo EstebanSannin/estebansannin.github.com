@@ -1,0 +1,57 @@
+<button id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+  <svg class="sun" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+    <path
+      d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"></path>
+  </svg>
+  <svg class="moon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+    <path
+      d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linejoin="round"></path>
+  </svg>
+</button>
+
+<style>
+  button {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--fg-muted);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  button:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .moon {
+    display: none;
+  }
+  :global([data-theme='dark']) .sun {
+    display: none;
+  }
+  :global([data-theme='dark']) .moon {
+    display: block;
+  }
+</style>
+
+<script>
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+  });
+</script>

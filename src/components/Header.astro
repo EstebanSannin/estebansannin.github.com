@@ -1,0 +1,83 @@
+---
+import { NAV, SITE_TITLE } from '../consts';
+import ThemeToggle from './ThemeToggle.astro';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || (href !== '/' && path.startsWith(href));
+---
+
+<header class="wrap">
+  <a href="/" class="brand" aria-label="Home">
+    <span class="prompt">&gt;</span>
+    {SITE_TITLE.toLowerCase().replace(' ', '_')}
+    <span class="cursor" aria-hidden="true"></span>
+  </a>
+  <nav>
+    {
+      NAV.map(({ href, label }) => (
+        <a href={href} aria-current={isActive(href) ? 'page' : undefined}>
+          {label}
+        </a>
+      ))
+    }
+    <ThemeToggle />
+  </nav>
+</header>
+
+<style>
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-block: 2rem;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  .prompt {
+    color: var(--accent);
+  }
+  .cursor {
+    width: 0.5em;
+    height: 1.05em;
+    background: var(--accent);
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cursor {
+      animation: none;
+    }
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  nav a {
+    color: var(--fg-muted);
+    text-decoration: none;
+  }
+  nav a:hover,
+  nav a[aria-current='page'] {
+    color: var(--fg);
+  }
+  nav a[aria-current='page']::before {
+    content: '~/';
+    color: var(--accent);
+  }
+</style>

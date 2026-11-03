@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPosts, getTags } from '../../utils/posts';
+
+const tags = getTags(await getPosts());
+---
+
+<Base title="Tags" description="Posts grouped by topic.">
+  <h1 class="page-title">Tags</h1>
+  <ul>
+    {
+      [...tags].map(([tag, count]) => (
+        <li>
+          <a class="tag" href={`/tags/${tag}/`}>
+            {tag}
+          </a>
+          <span class="mono muted">{count}</span>
+        </li>
+      ))
+    }
+  </ul>
+</Base>
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    gap: 0.75rem 1.5rem;
+  }
+  li {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 0.4rem;
+  }
+  .tag {
+    font-size: 0.9rem;
+  }
+</style>

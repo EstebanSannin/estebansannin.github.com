@@ -1,0 +1,13 @@
+---
+interface Props {
+  date: Date;
+  format?: 'short' | 'long';
+}
+const { date, format = 'long' } = Astro.props;
+const label =
+  format === 'short'
+    ? date.toISOString().slice(0, 10)
+    : date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+
+<time datetime={date.toISOString()}>{label}</time>
