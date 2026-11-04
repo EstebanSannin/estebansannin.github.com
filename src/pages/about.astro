@@ -1,28 +1,183 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import portrait from '../assets/about/stefano.jpg';
+import { Content as AboutText } from '../about/about.md';
+import { experience } from '../about/experience';
 ---
 
 <Base title="About" description="Who I am and what I work on.">
-  <h1 class="page-title">About</h1>
+  <header class="intro">
+    <Image
+      src={portrait}
+      alt="Stefano Viola, with a lake and mountains behind him"
+      widths={[128, 256]}
+      sizes="128px"
+      class="portrait"
+      loading="eager"
+    />
+    <div>
+      <h1>About</h1>
+      <p>
+        Hi, I'm Stefano. I've been tinkering with computers since the days of hosting web servers
+        on home routers, and I never really stopped.
+      </p>
+    </div>
+  </header>
+  <div class="prose">
+    <AboutText />
+  </div>
+
+  <section class="experience">
+    <h2 class="eyebrow">experience</h2>
+    <ol>
+      {
+        experience.map(({ company, years, summary, roles }) => (
+          <li>
+            <span class="years mono">{years}</span>
+            <div>
+              <h3>{company}</h3>
+              <p class="summary">{summary}</p>
+              <ul class="roles">
+                {roles.map(([title, when]) => (
+                  <li>
+                    <span>{title}</span>
+                    <span class="mono">{when}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="education">
+      <span class="mono">education</span> Computer Engineering, University of Sannio, Benevento
+    </p>
+  </section>
+
   <div class="prose">
     <p>
-      Hi, I'm Stefano. I've been tinkering with computers since the days of hosting web servers
-      on home routers, and I never really stopped.
-    </p>
-    <p>
-      Today I work on embedded Linux: the full stack from boards and bootloaders to kernels,
-      containers and over-the-air updates, and I lead the engineers who build it.
-    </p>
-    <p>This blog is where I write about:</p>
-    <ul>
-      <li><strong>Hardware</strong>: boards, bring-up, debugging with a scope in one hand.</li>
-      <li><strong>Software</strong>: Linux, build systems, tooling, the occasional rabbit hole.</li>
-      <li><strong>Engineering</strong>: architecture, trade-offs, shipping reliable things.</li>
-      <li><strong>Management</strong>: hiring, growing people, running teams that ship.</li>
-    </ul>
-    <p>
-      Find me on <a href="https://github.com/EstebanSannin">GitHub</a>, or follow along via
+      Find me on <a href="https://github.com/EstebanSannin">GitHub</a> and{' '}
+      <a href="https://www.linkedin.com/in/estebansannin">LinkedIn</a>, or follow along via{' '}
       <a href="/rss.xml">RSS</a>.
     </p>
   </div>
 </Base>
+
+<style>
+  .intro {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    margin: 3rem 0 2.5rem;
+  }
+  .portrait {
+    flex: none;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--accent);
+  }
+  h1 {
+    font-size: clamp(1.9rem, 5vw, 2.4rem);
+    margin: 0 0 0.5rem;
+  }
+  .intro p {
+    margin: 0;
+    color: var(--fg-muted);
+  }
+  .experience {
+    margin-block: 3.5rem 2.5rem;
+  }
+  .experience ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .experience ol > li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 1rem;
+    padding: 0 0 2rem 1.25rem;
+    border-left: 1px solid var(--border);
+  }
+  .experience ol > li:last-child {
+    padding-bottom: 0.5rem;
+  }
+  .experience ol > li::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 0.5rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+  .experience ol > li:first-child::before {
+    background: var(--accent);
+  }
+  .years {
+    color: var(--fg-faint);
+    padding-top: 0.2rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  .summary {
+    margin: 0.3rem 0 0.6rem;
+    color: var(--fg-muted);
+  }
+  .roles {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.92rem;
+  }
+  .roles li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.2rem;
+    border-bottom: 1px dashed var(--border);
+  }
+  .roles li:last-child {
+    border-bottom: 0;
+  }
+  .roles .mono {
+    color: var(--fg-faint);
+    white-space: nowrap;
+  }
+  .education {
+    margin: 1.5rem 0 0;
+    font-size: 0.92rem;
+    color: var(--fg-muted);
+  }
+  .education .mono {
+    color: var(--accent);
+    margin-right: 0.5rem;
+  }
+  @media (max-width: 34rem) {
+    .experience ol > li {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+  }
+  @media (max-width: 30rem) {
+    .intro {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+    .portrait {
+      width: 104px;
+      height: 104px;
+    }
+  }
+</style>

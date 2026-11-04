@@ -51,4 +51,5 @@ ffmpeg -i in.mov -vf "fps=30,scale=960:-2" -an -c:v libx264 -crf 26 -movflags +f
 - `src/consts.ts`: site title, navigation, social links
 - `src/styles/global.css`: design tokens (colors, fonts) and prose styles
 - `src/layouts/`: page shell and post layout
+- `src/about/`: About page text (`about.md`, plain Markdown) and experience timeline (`experience.ts`)
 - `src/pages/`: routes (`/`, `/blog`, `/tags`, `/about`, `/now`, `/rss.xml`)
