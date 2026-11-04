@@ -68,4 +68,14 @@
     max-width: 100%;
     height: auto;
   }
+  /* keep lifelines from showing through notes and message labels */
+  pre.mermaid .note {
+    fill: color-mix(in srgb, var(--accent) 11%, var(--bg)) !important;
+  }
+  pre.mermaid .messageText {
+    paint-order: stroke;
+    stroke: var(--bg) !important;
+    stroke-width: 6px;
+    stroke-linejoin: round;
+  }
 </style>

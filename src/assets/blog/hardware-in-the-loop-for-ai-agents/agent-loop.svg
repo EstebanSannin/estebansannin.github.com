@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 432" role="img" aria-label="The development loop an AI agent runs: edit, build, flash, boot, observe. Flash and boot need physical access, which dahlia-ctl replaces with commands.">
+  <style>
+    .lp-box { fill: var(--bg, #fbfbfa); stroke: var(--fg-faint, #8f8f96); stroke-width: 1.5; }
+    .lp-soft { fill: var(--bg-soft, #f2f2f0); stroke: var(--border, #e4e4e0); stroke-width: 1.5; }
+    .lp-hot { fill: var(--accent-soft, rgb(226 87 11 / .1)); stroke: var(--accent, #e2570b); stroke-width: 2; }
+    .lp-line { fill: none; stroke: var(--fg-faint, #8f8f96); stroke-width: 1.5; }
+    .lp-wire { fill: none; stroke: var(--fg-muted, #5f5f66); stroke-width: 2; }
+    .lp-hotline { fill: none; stroke: var(--accent, #e2570b); stroke-width: 2; }
+    .lp-dash { fill: none; stroke: var(--accent, #e2570b); stroke-width: 1.5; stroke-dasharray: 5 5; }
+    .lp-faint { fill: none; stroke: var(--border, #e4e4e0); stroke-width: 1.5; stroke-dasharray: 3 5; }
+    .lp-t { font: 600 17px var(--font-mono, monospace); fill: var(--fg, #18181b); }
+    .lp-s { font: 14px var(--font-mono, monospace); fill: var(--fg-muted, #5f5f66); }
+    .lp-x { font: 13px var(--font-mono, monospace); fill: var(--fg-faint, #8f8f96); }
+    .lp-a { font: 600 14px var(--font-mono, monospace); fill: var(--accent, #e2570b); }
+    .lp-h { font: 600 13px var(--font-mono, monospace); fill: var(--fg-faint, #8f8f96); letter-spacing: .08em; text-transform: uppercase; }
+    .lp-mid { text-anchor: middle; }
+    .lp-end { text-anchor: end; }
+    .lp-arrow { fill: var(--fg-faint, #8f8f96); }
+    .lp-arrowhot { fill: var(--accent, #e2570b); }
+  </style>
+  <defs>
+    <marker id="lp-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="lp-arrow" d="M0 0 L10 5 L0 10 z"/></marker>
+    <marker id="lp-ahh" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="lp-arrowhot" d="M0 0 L10 5 L0 10 z"/></marker>
+  </defs>
+  <circle cx="235" cy="215" r="158" class="lp-faint"/>
+  <path class="lp-wire" d="M299.3 70.7 A158 158 0 0 1 352.4 109.3" marker-end="url(#lp-ah)"/>
+  <path class="lp-wire" d="M392.1 231.5 A158 158 0 0 1 371.8 294.0" marker-end="url(#lp-ah)"/>
+  <path class="lp-wire" d="M267.9 369.5 A158 158 0 0 1 202.1 369.5" marker-end="url(#lp-ah)"/>
+  <path class="lp-wire" d="M98.2 294.0 A158 158 0 0 1 77.9 231.5" marker-end="url(#lp-ah)"/>
+  <path class="lp-wire" d="M117.6 109.3 A158 158 0 0 1 170.7 70.7" marker-end="url(#lp-ah)"/>
+  <rect class="lp-box" x="171.0" y="31.0" width="128" height="52" rx="8"/>
+  <text class="lp-t lp-mid" x="235.0" y="54.0">edit</text>
+  <text class="lp-x lp-mid" x="235.0" y="73.0">patch, config</text>
+  <rect class="lp-box" x="321.3" y="140.2" width="128" height="52" rx="8"/>
+  <text class="lp-t lp-mid" x="385.3" y="163.2">build</text>
+  <text class="lp-x lp-mid" x="385.3" y="182.2">kernel, image</text>
+  <rect class="lp-hot" x="263.9" y="316.8" width="128" height="52" rx="8"/>
+  <text class="lp-t lp-mid" x="327.9" y="339.8">flash</text>
+  <text class="lp-x lp-mid" x="327.9" y="358.8">recovery, uuu</text>
+  <rect class="lp-hot" x="78.1" y="316.8" width="128" height="52" rx="8"/>
+  <text class="lp-t lp-mid" x="142.1" y="339.8">boot</text>
+  <text class="lp-x lp-mid" x="142.1" y="358.8">power, reset</text>
+  <rect class="lp-box" x="20.7" y="140.2" width="128" height="52" rx="8"/>
+  <text class="lp-t lp-mid" x="84.7" y="163.2">observe</text>
+  <text class="lp-x lp-mid" x="84.7" y="182.2">console, tests</text>
+  <text class="lp-t lp-mid" x="235.0" y="211.0">AI agent</text>
+  <text class="lp-x lp-mid" x="235.0" y="233.0">runs the loop</text>
+  <rect class="lp-hot" x="510" y="112" width="250" height="206" rx="8"/>
+  <text class="lp-a" x="528.0" y="144.0" style="font-size:17px">dahlia-ctl</text>
+  <text class="lp-s" x="528.0" y="178.0">recovery --wait-sdp</text>
+  <text class="lp-s" x="528.0" y="204.0">power cycle</text>
+  <text class="lp-s" x="528.0" y="230.0">reset</text>
+  <text class="lp-s" x="528.0" y="256.0">status --json</text>
+  <text class="lp-x" x="528.0" y="302.0">replaces: me at the desk</text>
+  <path class="lp-dash" d="M391.9 342.8 H470 V215.0 H510" />
+  <path class="lp-dash" d="M142.1 368.8 V390.8 H470 V342.8" />
+</svg>

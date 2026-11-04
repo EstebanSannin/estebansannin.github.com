@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 390" role="img" aria-label="Recovery timing: RECOVERY# is pulled low first and held through a hard power-off, a discharge of about 6 seconds and a power-key press, then for 1.5 seconds after power-on, so the boot strap is sampled at the cold power-on reset. The SoC serial-download device appears on USB within about a second.">
+  <style>
+    .tm-box { fill: var(--bg, #fbfbfa); stroke: var(--fg-faint, #8f8f96); stroke-width: 1.5; }
+    .tm-soft { fill: var(--bg-soft, #f2f2f0); stroke: var(--border, #e4e4e0); stroke-width: 1.5; }
+    .tm-hot { fill: var(--accent-soft, rgb(226 87 11 / .1)); stroke: var(--accent, #e2570b); stroke-width: 2; }
+    .tm-line { fill: none; stroke: var(--fg-faint, #8f8f96); stroke-width: 1.5; }
+    .tm-wire { fill: none; stroke: var(--fg-muted, #5f5f66); stroke-width: 2; }
+    .tm-hotline { fill: none; stroke: var(--accent, #e2570b); stroke-width: 2; }
+    .tm-dash { fill: none; stroke: var(--accent, #e2570b); stroke-width: 1.5; stroke-dasharray: 5 5; }
+    .tm-faint { fill: none; stroke: var(--border, #e4e4e0); stroke-width: 1.5; stroke-dasharray: 3 5; }
+    .tm-t { font: 600 17px var(--font-mono, monospace); fill: var(--fg, #18181b); }
+    .tm-s { font: 14px var(--font-mono, monospace); fill: var(--fg-muted, #5f5f66); }
+    .tm-x { font: 13px var(--font-mono, monospace); fill: var(--fg-faint, #8f8f96); }
+    .tm-a { font: 600 14px var(--font-mono, monospace); fill: var(--accent, #e2570b); }
+    .tm-h { font: 600 13px var(--font-mono, monospace); fill: var(--fg-faint, #8f8f96); letter-spacing: .08em; text-transform: uppercase; }
+    .tm-mid { text-anchor: middle; }
+    .tm-end { text-anchor: end; }
+    .tm-arrow { fill: var(--fg-faint, #8f8f96); }
+    .tm-arrowhot { fill: var(--accent, #e2570b); }
+  </style>
+  <defs>
+    <marker id="tm-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="tm-arrow" d="M0 0 L10 5 L0 10 z"/></marker>
+    <marker id="tm-ahh" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="tm-arrowhot" d="M0 0 L10 5 L0 10 z"/></marker>
+  </defs>
+  <text class="tm-s tm-end" x="142.0" y="69.0">RECOVERY#</text>
+  <text class="tm-s tm-end" x="142.0" y="134.0">FORCE_OFF#</text>
+  <text class="tm-s tm-end" x="142.0" y="199.0">PWR_BTN#</text>
+  <text class="tm-s tm-end" x="142.0" y="264.0">board power</text>
+  <text class="tm-s tm-end" x="142.0" y="329.0">SDP on USB</text>
+  <rect x="200" y="36" width="590" height="312" rx="4" style="fill: var(--accent, #e2570b); opacity: .07"/>
+  <path class="tm-hotline" d="M160 50 H200 V78 H790 V50 H960" style="stroke-width:2.5"/>
+  <path class="tm-wire" d="M160 115 H285 V143 H335 V115 H960" style="stroke-width:2.5"/>
+  <path class="tm-wire" d="M160 180 H585 V208 H625 V180 H960" style="stroke-width:2.5"/>
+  <path class="tm-wire" style="stroke-width:2.5" d="M160 245 H335 L375 273 H595 L615 245 H960"/>
+  <path class="tm-hotline" d="M160 338 H850 V310 H960" style="stroke-width:2.5"/>
+  <rect x="430" y="34" width="90" height="316" style="fill: var(--bg, #fbfbfa)"/>
+  <path class="tm-line" d="M430 34 V350" style="stroke-dasharray: 2 4"/>
+  <path class="tm-line" d="M520 34 V350" style="stroke-dasharray: 2 4"/>
+  <text class="tm-x tm-mid" x="475.0" y="170.0">discharge</text>
+  <text class="tm-s tm-mid" x="475.0" y="188.0">≈ 6 s</text>
+  <path class="tm-dash" d="M637 36 V348"/>
+  <text class="tm-a" x="645.0" y="30.0">POR: straps sampled</text>
+  <path class="tm-line" d="M160 357 H960"/>
+  <path class="tm-line" d="M200 351 V363 M285 351 V363"/>
+  <text class="tm-x tm-mid" x="242.5" y="379.0">0.3 s</text>
+  <path class="tm-line" d="M285 351 V363 M335 351 V363"/>
+  <text class="tm-x tm-mid" x="310.0" y="379.0">250 ms</text>
+  <path class="tm-line" d="M585 351 V363 M625 351 V363"/>
+  <text class="tm-x tm-mid" x="605.0" y="379.0">150 ms</text>
+  <path class="tm-line" d="M625 351 V363 M790 351 V363"/>
+  <text class="tm-x tm-mid" x="707.5" y="379.0">hold 1.5 s</text>
+  <path class="tm-line" d="M790 351 V363 M850 351 V363"/>
+  <text class="tm-x tm-mid" x="820.0" y="379.0">≤ 1 s</text>
+</svg>

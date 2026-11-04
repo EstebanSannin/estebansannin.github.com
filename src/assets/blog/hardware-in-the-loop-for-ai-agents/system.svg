@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 985 480" role="img" aria-label="System overview: the host runs the agent, dahlia-ctl, a console reader and uuu. One USB-C cable reaches the FT4232HL debug bridge: channel A drives four active-low control lines through a level shifter, channel D is the Linux console. In recovery the SoC appears on the module's USB OTG port.">
+  <style>
+    .sy-box { fill: var(--bg, #fbfbfa); stroke: var(--fg-faint, #8f8f96); stroke-width: 1.5; }
+    .sy-soft { fill: var(--bg-soft, #f2f2f0); stroke: var(--border, #e4e4e0); stroke-width: 1.5; }
+    .sy-hot { fill: var(--accent-soft, rgb(226 87 11 / .1)); stroke: var(--accent, #e2570b); stroke-width: 2; }
+    .sy-line { fill: none; stroke: var(--fg-faint, #8f8f96); stroke-width: 1.5; }
+    .sy-wire { fill: none; stroke: var(--fg-muted, #5f5f66); stroke-width: 2; }
+    .sy-hotline { fill: none; stroke: var(--accent, #e2570b); stroke-width: 2; }
+    .sy-dash { fill: none; stroke: var(--accent, #e2570b); stroke-width: 1.5; stroke-dasharray: 5 5; }
+    .sy-faint { fill: none; stroke: var(--border, #e4e4e0); stroke-width: 1.5; stroke-dasharray: 3 5; }
+    .sy-t { font: 600 17px var(--font-mono, monospace); fill: var(--fg, #18181b); }
+    .sy-s { font: 14px var(--font-mono, monospace); fill: var(--fg-muted, #5f5f66); }
+    .sy-x { font: 13px var(--font-mono, monospace); fill: var(--fg-faint, #8f8f96); }
+    .sy-a { font: 600 14px var(--font-mono, monospace); fill: var(--accent, #e2570b); }
+    .sy-h { font: 600 13px var(--font-mono, monospace); fill: var(--fg-faint, #8f8f96); letter-spacing: .08em; text-transform: uppercase; }
+    .sy-mid { text-anchor: middle; }
+    .sy-end { text-anchor: end; }
+    .sy-arrow { fill: var(--fg-faint, #8f8f96); }
+    .sy-arrowhot { fill: var(--accent, #e2570b); }
+  </style>
+  <defs>
+    <marker id="sy-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="sy-arrow" d="M0 0 L10 5 L0 10 z"/></marker>
+    <marker id="sy-ahh" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="sy-arrowhot" d="M0 0 L10 5 L0 10 z"/></marker>
+  </defs>
+  <rect class="sy-soft" x="15" y="20" width="225" height="440" rx="10"/>
+  <text class="sy-h" x="33.0" y="50.0">Linux host</text>
+  <path class="sy-line" d="M52 124 V380" />
+  <rect class="sy-box" x="32" y="70" width="190" height="54" rx="7"/>
+  <text class="sy-t" x="47.0" y="93.0" style="font-size:16px">AI agent</text>
+  <text class="sy-x" x="47.0" y="113.0">shell over SSH</text>
+  <rect x="32" y="150" width="190" height="54" rx="7" style="fill: var(--bg, #fbfbfa)"/>
+  <rect class="sy-hot" x="32" y="150" width="190" height="54" rx="7"/>
+  <text class="sy-a" x="47.0" y="173.0" style="font-size:16px">dahlia-ctl</text>
+  <text class="sy-x" x="47.0" y="193.0">libftdi1 bit-bang</text>
+  <rect class="sy-box" x="32" y="230" width="190" height="54" rx="7"/>
+  <text class="sy-t" x="47.0" y="253.0" style="font-size:16px">console</text>
+  <text class="sy-x" x="47.0" y="273.0">ttyUSB3 · 115200</text>
+  <rect class="sy-box" x="32" y="380" width="190" height="54" rx="7"/>
+  <text class="sy-t" x="47.0" y="403.0" style="font-size:16px">uuu</text>
+  <text class="sy-x" x="47.0" y="423.0">SDP loader</text>
+  <path class="sy-line" d="M52 132 V150" marker-end="url(#sy-ah)"/>
+  <path class="sy-line" d="M52 212 V230" marker-end="url(#sy-ah)"/>
+  <path class="sy-line" d="M52 362 V380" marker-end="url(#sy-ah)"/>
+  <rect class="sy-soft" x="330" y="20" width="215" height="300" rx="10"/>
+  <text class="sy-h" x="348.0" y="50.0">FT4232HL · IC33</text>
+  <path class="sy-hotline" d="M222 177.0 H262 V200 H330" />
+  <path class="sy-wire" d="M222 257.0 H262 V200" />
+  <text class="sy-x sy-mid" x="291.0" y="166.0">USB-C</text>
+  <text class="sy-x sy-mid" x="291.0" y="182.0">X18</text>
+  <rect class="sy-hot" x="344" y="62" width="187" height="132" rx="7"/>
+  <text class="sy-a" x="358.0" y="86.0">A · GPIO</text>
+  <text class="sy-s" x="358.0" y="115.0">4 FORCE_OFF#</text>
+  <path class="sy-hotline" d="M531 110 H610" />
+  <path class="sy-hotline" d="M684 110 H740" marker-end="url(#sy-ahh)"/>
+  <text class="sy-s" x="752.0" y="115.0">LTC2954 KILL · hard off</text>
+  <text class="sy-s" x="358.0" y="139.0">5 RESET#</text>
+  <path class="sy-hotline" d="M531 134 H610" />
+  <path class="sy-hotline" d="M684 134 H740" marker-end="url(#sy-ahh)"/>
+  <text class="sy-s" x="752.0" y="139.0">module reset</text>
+  <text class="sy-s" x="358.0" y="163.0">6 PWR_BTN#</text>
+  <path class="sy-hotline" d="M531 158 H610" />
+  <path class="sy-hotline" d="M684 158 H740" marker-end="url(#sy-ahh)"/>
+  <text class="sy-s" x="752.0" y="163.0">LTC2954 PB# · power key</text>
+  <text class="sy-s" x="358.0" y="187.0">7 RECOVERY#</text>
+  <path class="sy-hotline" d="M531 182 H610" />
+  <path class="sy-hotline" d="M684 182 H740" marker-end="url(#sy-ahh)"/>
+  <text class="sy-s" x="752.0" y="187.0">boot strap · SDP</text>
+  <text class="sy-s" x="358.0" y="219.0">B · JTAG</text>
+  <path class="sy-faint" d="M531 214 H604 M690 214 H740" />
+  <text class="sy-x" x="752.0" y="219.0">not used</text>
+  <text class="sy-s" x="358.0" y="257.0">C · UART4</text>
+  <path class="sy-faint" d="M531 252 H604 M690 252 H740" />
+  <text class="sy-x" x="752.0" y="257.0">M-core console</text>
+  <text class="sy-s" x="358.0" y="295.0">D · UART3</text>
+  <path class="sy-wire" d="M531 290 H740" />
+  <text class="sy-s" x="752.0" y="295.0">Linux console</text>
+  <rect class="sy-line" x="590" y="20" width="380" height="440" rx="10" style="stroke-dasharray:6 6"/>
+  <text class="sy-h" x="608.0" y="50.0">Dahlia + Verdin iMX8M Plus</text>
+  <rect class="sy-box" x="610" y="88" width="74" height="116" rx="6"/>
+  <text class="sy-x sy-mid" x="647.0" y="222.0">level shift</text>
+  <text class="sy-x sy-mid" x="647.0" y="238.0">JP7 closed</text>
+  <rect class="sy-box" x="752" y="377" width="196" height="56" rx="7"/>
+  <text class="sy-t" x="766.0" y="401.0" style="font-size:15px">USB OTG · X3</text>
+  <text class="sy-x" x="766.0" y="421.0">1fc9:0146 in SDP</text>
+  <path class="sy-wire" d="M752 405 H224" marker-end="url(#sy-ah)"/>
+  <text class="sy-x sy-mid" x="415.0" y="395.0">recovery only: BootROM serial download</text>
+</svg>
